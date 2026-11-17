@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel · Divino Fogão Shopping Barra</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#5c1414">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<style>
+:root{--bordo:#5c1414;--verm:#c8102e;--creme:#f7f0e4;--papel:#fffaf2;--tinta:#22160f;--cinza:#5f5045;--linha:#e6d6c0;--verde:#2f6b2a;--amar:#b7791f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito Sans',system-ui,sans-serif;background:var(--creme);color:var(--tinta);font-size:16px;line-height:1.45}
+h1,h2,h3,.os{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.01em}
+button{font-family:inherit}
+.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800;font-size:14px;cursor:pointer}
+.b-v{background:var(--verm);color:#fff}.b-b{background:var(--bordo);color:#fff}.b-c{background:#fff;color:var(--bordo);border:2px solid var(--bordo)}
+input,select,textarea{font:600 15px 'Nunito Sans';padding:10px 12px;border:2px solid var(--linha);border-radius:10px;background:#fff;color:var(--tinta);width:100%}
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:20px;background:var(--bordo)}
+#login form{background:var(--papel);border-radius:18px;padding:28px;width:min(380px,100%);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+#login h1{color:var(--bordo);font-size:28px;line-height:1}
+#login p{color:var(--cinza);margin:6px 0 18px}
+#login label{font-weight:800;font-size:14px;display:block;margin:10px 0 5px}
+.demo{background:#fff3d6;border-radius:10px;padding:10px 12px;font-size:14px;margin-top:14px;font-weight:600}
+/* app */
+#app{display:none;min-height:100vh}
+.lado{position:fixed;left:0;top:0;bottom:0;width:230px;background:var(--bordo);color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.lado .m{padding:6px 10px 16px}
+.lado .m b{font:600 20px 'Oswald';display:block;line-height:1}
+.lado .m small{opacity:.8;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.lado button{background:none;border:0;color:#f6e3da;text-align:left;padding:11px 12px;border-radius:10px;font-weight:800;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.lado button.on{background:#fff;color:var(--bordo)}
+.lado button i{font-style:normal;background:var(--verm);color:#fff;border-radius:999px;font-size:12px;padding:1px 8px}
+.lado .rod{margin-top:auto;font-size:13px;opacity:.85;padding:10px}
+.lado .rod a{color:#ffd7a0}
+main{margin-left:230px;padding:26px 28px 80px}
+.cab{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.cab h2{font-size:30px;color:var(--bordo)}
+.cab .dir{margin-left:auto;display:flex;gap:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:#fff;border-radius:14px;padding:16px;border:1px solid var(--linha)}
+.kpi span{font-size:13px;font-weight:800;color:var(--cinza);text-transform:uppercase;letter-spacing:.05em}
+.kpi b{display:block;font:600 30px 'Oswald';color:var(--tinta);margin-top:2px}
+.kpi small{color:var(--cinza);font-weight:600}
+.card{background:#fff;border-radius:14px;padding:18px;border:1px solid var(--linha);margin-bottom:16px}
+.card h3{font-size:18px;color:var(--bordo);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza);padding:8px;border-bottom:2px solid var(--linha)}
+td{padding:10px 8px;border-bottom:1px solid #f0e4d3;vertical-align:top}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800}
+.p-novo{background:#ffe3e3;color:#a1111f}.p-preparando{background:#fff0cc;color:#8a5a00}.p-pronto{background:#dff3dc;color:var(--verde)}.p-retirado{background:#eee;color:#555}
+.p-loja{background:#e8e2ff;color:#4a33a8}.p-ret{background:#e3f0ff;color:#1d4f91}
+/* kanban */
+.kan{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}
+.col{background:#efe4d3;border-radius:14px;padding:10px;min-height:200px}
+.col h3{font-size:15px;color:var(--bordo);padding:4px 6px 10px;display:flex;justify-content:space-between}
+.ped{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid var(--linha)}
+.ped .t{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.ped .t b{font:600 18px 'Oswald'}
+.ped .h{font:600 22px 'Oswald';color:var(--verm)}
+.ped ul{list-style:none;margin:8px 0;font-size:14px}
+.ped li{padding:2px 0}
+.ped .rod{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
+.ped .rod small{color:var(--cinza);font-weight:700}
+/* buffet editor */
+.dias{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.dias button{border:2px solid var(--bordo);background:#fff;color:var(--bordo);border-radius:999px;padding:7px 13px;font-weight:800;cursor:pointer;text-transform:capitalize}
+.dias button.on{background:var(--bordo);color:#fff}
+.it{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f0e4d3}
+.it .n{flex:1;font-weight:700}
+.it.acabou .n{text-decoration:line-through;opacity:.5}
+.sw{position:relative;width:46px;height:26px;flex:none}
+.sw input{display:none}
+.sw span{position:absolute;inset:0;background:#cfc2b1;border-radius:999px;cursor:pointer;transition:.2s}
+.sw span:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.sw input:checked + span{background:var(--verde)}
+.sw input:checked + span:after{left:23px}
+.add{display:flex;gap:8px;margin-top:10px}
+.x{border:0;background:none;color:#a1111f;font-weight:800;cursor:pointer;font-size:18px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--tinta);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;display:none;z-index:80}
+.vazio{color:var(--cinza);font-weight:600;padding:10px 0}
+.mob-tabs{display:none}
+@media(max-width:900px){
+  .lado{display:none}
+  main{margin-left:0;padding:16px 14px 90px}
+  .mob-top{display:flex!important}
+  .mob-tabs{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--bordo);z-index:50;overflow-x:auto;padding:6px;gap:4px;scrollbar-width:none}
+  .mob-tabs button{flex:none;background:none;border:0;color:#f6e3da;font-weight:800;font-size:13px;padding:10px 12px;border-radius:10px}
+  .mob-tabs button.on{background:#fff;color:var(--bordo)}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kan{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr}
+  .cab h2{font-size:24px}
+  .tab-scroll{overflow-x:auto}
+  .tab-scroll table{min-width:560px}
+}
+.mob-top{display:none;align-items:center;gap:10px;background:var(--bordo);color:#fff;padding:12px 14px;position:sticky;top:0;z-index:40}
+.mob-top b{font:600 18px 'Oswald';text-transform:uppercase}
+.mob-top small{display:block;font-size:11px;opacity:.85;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <form onsubmit="entrar(event)">
+    <h1>Divino Fogão<br><span style="color:var(--verm)">Shopping Barra</span></h1>
+    <p>Área da gerência da unidade</p>
+    <label>Usuário</label><input id="u" value="gerente" autocomplete="username">
+    <label>Senha</label><input id="s" type="password" value="barra2026" autocomplete="current-password">
+    <button class="btn b-v" style="width:100%;margin-top:16px;padding:14px">Entrar</button>
+    <div class="demo">Demonstração: usuário <b>gerente</b>, senha <b>barra2026</b></div>
+    <p id="erro" style="color:#a1111f;font-weight:800;margin:10px 0 0;display:none">Usuário ou senha errados.</p>
+  </form>
+</div>
+
+<div id="app">
+  <div class="mob-top"><div><b>Divino Fogão</b><small>Gerência · Shopping Barra</small></div><a href="../" style="margin-left:auto;color:#ffd7a0;font-weight:800;font-size:14px">Ver site</a></div>
+  <aside class="lado">
+    <div class="m"><b>Divino Fogão</b><small>Gerência · Shopping Barra</small></div>
+    <div id="menu"></div>
+    <div class="rod"><a href="../" target="_blank">Ver o site ↗</a><br><a href="#" onclick="resetar();return false">Restaurar dados da demo</a><br><a href="#" onclick="sair();return false">Sair</a></div>
+  </aside>
+  <main id="tela"></main>
+  <nav class="mob-tabs" id="menuMob"></nav>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="../assets/dados.js?v=20261117120902"></script>
+<script>
+let db=DFB.carregar(), aba='hoje', diaEd=new Date().getDay();
+const $=s=>document.querySelector(s);
+const ABAS=[['hoje','Hoje'],['pedidos','Pedidos'],['buffet','Buffet do dia'],['cardapio','Marmitas e preços'],['lojas','Lojas do shopping'],['encomendas','Encomendas'],['fidelidade','Cartão Divino']];
+const STATUS=['novo','preparando','pronto','retirado'];
+const ST_NOME={novo:'Novos',preparando:'Na cozinha',pronto:'Pronto',retirado:'Entregue'};
+
+function entrar(e){e.preventDefault();if($('#u').value.trim()==='gerente'&&$('#s').value==='barra2026'){try{sessionStorage.setItem('dfb-ok','1')}catch(_){}abrir()}else $('#erro').style.display='block'}
+function abrir(){$('#login').style.display='none';$('#app').style.display='block';render()}
+function sair(){try{sessionStorage.removeItem('dfb-ok')}catch(_){}location.reload()}
+function resetar(){db=DFB.resetar();toast('Dados da demo restaurados');render()}
+function salva(m){DFB.salvar(db);if(m)toast(m);render()}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',2000)}
+function ir(a){aba=a;render();window.scrollTo(0,0)}
+const hojeStr=()=>new Date().toISOString().slice(0,10);
+const doDia=p=>(p.criado||'').slice(0,10)===hojeStr();
+
+function menu(){
+  const novos=db.pedidos.filter(p=>p.status==='novo').length, encN=db.encomendas.filter(e=>e.status==='novo').length, lojaN=db.lojas.filter(l=>l.novo).length;
+  const badge={pedidos:novos,encomendas:encN,lojas:lojaN};
+  const h=ABAS.map(([k,n])=>`<button class="${aba===k?'on':''}" onclick="ir('${k}')">${n}${badge[k]?`<i>${badge[k]}</i>`:''}</button>`).join('');
+  $('#menu').innerHTML=h;$('#menuMob').innerHTML=h;
+}
+function render(){db=DFB.carregar();menu();$('#tela').innerHTML=(T[aba]||T.hoje)()}
+
+function itensTxt(p){return p.itens.map(i=>`<li>${i.q}× ${DFB.item(db,i.id).nome}</li>`).join('')}
+function nomeLoja(id){return (db.lojas.find(l=>l.id===id)||{}).nome||''}
+
+const T={
+hoje(){
+  const hoje=db.pedidos.filter(doDia), fat=hoje.reduce((s,p)=>s+DFB.totalPedido(db,p),0);
+  const marm=hoje.filter(p=>p.status!=='retirado').reduce((s,p)=>s+p.itens.filter(i=>!DFB.item(db,i.id).bebida).reduce((a,i)=>a+i.q,0),0);
+  const lojasHoje=new Set(hoje.filter(p=>p.tipo==='loja').map(p=>p.loja)).size;
+  const prox=hoje.filter(p=>p.status!=='retirado').sort((a,b)=>a.retirada.localeCompare(b.retirada));
+  const acab=db.buffet.acabou;
+  return `<div class="cab"><h2>Hoje · ${DFB.DIAS[new Date().getDay()]}</h2><div class="dir"><button class="btn b-v" onclick="ir('pedidos')">Abrir pedidos</button></div></div>
+  <div class="kpis">
+    <div class="kpi"><span>Pedidos online</span><b>${hoje.length}</b><small>retirada + lojas</small></div>
+    <div class="kpi"><span>Faturado online</span><b>${DFB.brl(fat)}</b><small>fora o salão</small></div>
+    <div class="kpi"><span>Marmitas a separar</span><b>${marm}</b><small>ainda não entregues</small></div>
+    <div class="kpi"><span>Lojas atendidas</span><b>${lojasHoje}</b><small>de ${db.lojas.filter(l=>l.ativo).length} parceiras</small></div>
+  </div>
+  <div class="g2">
+    <div class="card"><h3>Próximas retiradas e entregas</h3>${prox.length?`<table><tr><th>Hora</th><th>Pedido</th><th>Status</th></tr>${prox.map(p=>`<tr><td><b style="font:600 18px Oswald;color:var(--verm)">${p.retirada}</b></td><td><b>${p.id}</b> · ${p.cliente}<br><small style="color:var(--cinza)">${p.entrega}</small></td><td><span class="pill p-${p.status}">${p.status}</span></td></tr>`).join('')}</table>`:'<p class="vazio">Nada pendente.</p>'}</div>
+    <div class="card"><h3>Buffet de hoje</h3>
+      ${DFB.destaquesHoje(db).map(p=>`<div class="it ${acab.includes(p)?'acabou':''}"><span class="n">${p}</span><label class="sw" title="No buffet"><input type="checkbox" ${acab.includes(p)?'':'checked'} onchange="acabou('${p.replace(/'/g,"\\'")}',!this.checked)"><span></span></label></div>`).join('')}
+      <p style="margin-top:10px;color:var(--cinza);font-size:14px;font-weight:600">Desligou, o prato aparece riscado como "acabou" no site.</p>
+      <button class="btn b-c" style="margin-top:10px" onclick="ir('buffet')">Editar buffet da semana</button></div>
+  </div>
+  <div class="g2">
+    <div class="card"><h3>Encomendas abertas</h3>${db.encomendas.filter(e=>e.status!=='fechado').map(e=>`<div class="it"><span class="n">${e.tipo} · ${e.pessoas} pessoas<br><small style="color:var(--cinza)">${e.nome} · ${fmtData(e.data)}</small></span><span class="pill ${e.status==='novo'?'p-novo':'p-preparando'}">${e.status}</span></div>`).join('')||'<p class="vazio">Nenhuma.</p>'}</div>
+    <div class="card"><h3>Cartão Divino</h3><p style="font-weight:700">${db.fidelidade.length} clientes com selo · ${db.fidelidade.filter(c=>c.selos>=9).length} perto do almoço grátis</p><button class="btn b-c" style="margin-top:10px" onclick="ir('fidelidade')">Lançar selo</button></div>
+  </div>`;
+},
+pedidos(){
+  return `<div class="cab"><h2>Pedidos</h2><div class="dir"><button class="btn b-c" onclick="pedidoTeste()">+ Pedido de teste</button></div></div>
+  <div class="kan">${STATUS.map(s=>{const ps=db.pedidos.filter(p=>p.status===s).sort((a,b)=>a.retirada.localeCompare(b.retirada));return `<div class="col"><h3><span>${ST_NOME[s]}</span><span>${ps.length}</span></h3>${ps.map(p=>`
+    <div class="ped"><div class="t"><b>${p.id}</b><span class="pill ${p.tipo==='loja'?'p-loja':'p-ret'}">${p.tipo==='loja'?'loja':'retirada'}</span></div>
+    <div class="h">${p.retirada}</div><div style="font-weight:800">${p.cliente}</div><small style="color:var(--cinza);font-weight:700">${p.entrega} · ${p.pago}</small>
+    <ul>${itensTxt(p)}</ul>
+    <div class="rod"><b>${DFB.brl(DFB.totalPedido(db,p))}</b>${s!=='retirado'?`<button class="btn b-v" onclick="avancar('${p.id}')">${s==='novo'?'Pra cozinha':s==='preparando'?'Pronto':'Entregue'} →</button>`:'<small>finalizado</small>'}</div></div>`).join('')||'<p class="vazio" style="padding:6px">—</p>'}</div>`}).join('')}</div>`;
+},
+buffet(){
+  const d=db.buffet.dia[diaEd]||[];
+  return `<div class="cab"><h2>Buffet da semana</h2></div>
+  <div class="card"><h3>Destaques por dia</h3>
+    <div class="dias">${[0,1,2,3,4,5,6].map(i=>`<button class="${i===diaEd?'on':''}" onclick="diaEd=${i};render()">${DFB.DIAS[i]}</button>`).join('')}</div>
+    ${d.map((p,k)=>`<div class="it"><span class="n">${p}</span><button class="x" onclick="tiraDest(${k})" aria-label="Remover">×</button></div>`).join('')}
+    <div class="add"><input id="novoDest" placeholder="Ex.: Galinhada"><button class="btn b-v" onclick="poeDest()">Adicionar</button></div>
+  </div>
+  <div class="card"><h3>Todo dia no buffet</h3>
+    ${db.buffet.base.map((p,k)=>`<div class="it ${db.buffet.acabou.includes(p.nome)?'acabou':''}"><span class="n">${p.nome}</span><small style="color:var(--cinza);font-weight:700">${p.tipo}</small><label class="sw" title="No buffet hoje"><input type="checkbox" ${db.buffet.acabou.includes(p.nome)?'':'checked'} onchange="acabou(db.buffet.base[${k}].nome,!this.checked)"><span></span></label><button class="x" onclick="db.buffet.base.splice(${k},1);salva('Removido')">×</button></div>`).join('')}
+    <div class="add"><input id="novoBase" placeholder="Novo item fixo"><select id="tipoBase" style="width:170px"><option value="prot">proteína</option><option value="acomp">acompanhamento</option><option value="salada">salada</option></select><button class="btn b-v" onclick="poeBase()">Adicionar</button></div>
+  </div>`;
+},
+cardapio(){
+  return `<div class="cab"><h2>Marmitas e preços</h2></div>
+  <div class="card"><h3>Preço do buffet (aparece no site)</h3>
+    <div class="g2"><label><b>Buffet livre (sirva-se 1 vez)</b><input type="number" step="0.01" value="${db.precos.livre}" onchange="db.precos.livre=+this.value;salva('Preço salvo')"></label>
+    <label><b>Cada 100 g</b><input type="number" step="0.01" value="${db.precos.cem}" onchange="db.precos.cem=+this.value;salva('Preço salvo')"></label></div></div>
+  <div class="card"><h3>Marmitas e bebidas</h3><div class="tab-scroll"><table><tr><th>Item</th><th>Preço</th><th>No site</th></tr>
+    ${db.marmitas.map((m,k)=>`<tr><td><b>${m.nome}</b><br><small style="color:var(--cinza)">${m.desc}</small></td><td style="width:130px"><input type="number" step="0.1" value="${m.preco}" onchange="db.marmitas[${k}].preco=+this.value;salva('Preço salvo')"></td><td><label class="sw"><input type="checkbox" ${m.ativo?'checked':''} onchange="db.marmitas[${k}].ativo=this.checked;salva(this.checked?'Voltou pro site':'Tirado do site')"><span></span></label></td></tr>`).join('')}
+  </table></div></div>`;
+},
+lojas(){
+  const mes=db.pedidos.filter(p=>p.tipo==='loja');
+  return `<div class="cab"><h2>Lojas do shopping</h2></div>
+  <div class="kpis"><div class="kpi"><span>Lojas parceiras</span><b>${db.lojas.filter(l=>l.ativo).length}</b></div><div class="kpi"><span>Pessoas atendidas</span><b>${db.lojas.filter(l=>l.ativo).reduce((s,l)=>s+l.pessoas,0)}</b></div><div class="kpi"><span>Pedidos no mês</span><b>${mes.length}</b></div><div class="kpi"><span>A faturar</span><b>${DFB.brl(mes.reduce((s,p)=>s+DFB.totalPedido(db,p),0))}</b></div></div>
+  <div class="card"><h3>Cadastro das lojas</h3><div class="tab-scroll"><table><tr><th>Loja</th><th>Piso</th><th>Responsável</th><th>Time</th><th>A faturar</th><th></th></tr>
+  ${db.lojas.map((l,k)=>{const v=mes.filter(p=>p.loja===l.id).reduce((s,p)=>s+DFB.totalPedido(db,p),0);return `<tr><td><b>${l.nome}</b>${l.novo?' <span class="pill p-novo">novo cadastro</span>':''}</td><td>${l.piso}</td><td>${l.contato}<br><small style="color:var(--cinza)">${l.tel}</small></td><td>${l.pessoas}</td><td>${DFB.brl(v)}</td><td>${l.ativo?'<span class="pill p-pronto">ativa</span>':`<button class="btn b-v" onclick="db.lojas[${k}].ativo=true;db.lojas[${k}].novo=false;salva('Loja aprovada')">Aprovar</button>`}</td></tr>`}).join('')}
+  </table></div></div>`;
+},
+encomendas(){
+  return `<div class="cab"><h2>Encomendas e confraternizações</h2></div>
+  <div class="card tab-scroll"><table><tr><th>Pedido</th><th>Data</th><th>Pessoas</th><th>Orçamento</th><th>Status</th></tr>
+  ${db.encomendas.map((e,k)=>`<tr><td><b>${e.tipo}</b><br>${e.nome} · ${e.tel}<br><small style="color:var(--cinza)">${e.obs||''}</small></td><td>${fmtData(e.data)}</td><td>${e.pessoas}</td>
+  <td style="width:140px"><input type="number" step="0.01" value="${e.valor||''}" placeholder="${DFB.brl(e.pessoas*db.precos.livre)}" onchange="db.encomendas[${k}].valor=+this.value;salva('Valor salvo')"></td>
+  <td><select onchange="db.encomendas[${k}].status=this.value;salva('Status salvo')">${['novo','orçamento enviado','fechado','perdido'].map(s=>`<option ${s===e.status?'selected':''}>${s}</option>`).join('')}</select></td></tr>`).join('')}
+  </table><p style="color:var(--cinza);font-size:14px;margin-top:10px;font-weight:600">Sugestão de valor = pessoas × preço do buffet livre.</p></div>`;
+},
+fidelidade(){
+  return `<div class="cab"><h2>Cartão Divino</h2></div>
+  <div class="card"><h3>Lançar selo no caixa</h3><div class="add"><input id="fTel" inputmode="tel" placeholder="WhatsApp do cliente"><input id="fNome" placeholder="Nome (se for novo)"><button class="btn b-v" onclick="selo()">+1 selo</button></div></div>
+  <div class="card tab-scroll"><table><tr><th>Cliente</th><th>WhatsApp</th><th>Selos</th><th>Almoços grátis usados</th><th></th></tr>
+  ${db.fidelidade.sort((a,b)=>b.selos-a.selos).map((c,k)=>`<tr><td><b>${c.nome}</b></td><td>${c.tel}</td><td><b style="font:600 18px Oswald">${c.selos}/10</b></td><td>${c.resgates}</td><td>${c.selos>=10?`<button class="btn b-v" onclick="resgatar('${c.tel}')">Resgatar</button>`:`<button class="btn b-c" onclick="document.getElementById('fTel').value='${c.tel}';selo()">+1</button>`}</td></tr>`).join('')}
+  </table></div>`;
+}
+};
+function fmtData(s){if(!s)return'';const [a,m,d]=s.split('-');return d+'/'+m}
+function acabou(nome,sim){const a=db.buffet.acabou;const i=a.indexOf(nome);if(sim&&i<0)a.push(nome);if(!sim&&i>=0)a.splice(i,1);salva(sim?'Marcado como acabou':'Voltou pro buffet')}
+function poeDest(){const v=$('#novoDest').value.trim();if(!v)return;(db.buffet.dia[diaEd]=db.buffet.dia[diaEd]||[]).push(v);salva('Destaque adicionado')}
+function tiraDest(k){db.buffet.dia[diaEd].splice(k,1);salva('Removido')}
+function poeBase(){const v=$('#novoBase').value.trim();if(!v)return;db.buffet.base.push({nome:v,tipo:$('#tipoBase').value});salva('Item adicionado')}
+function avancar(id){const p=db.pedidos.find(x=>x.id===id);p.status=STATUS[STATUS.indexOf(p.status)+1];salva(p.id+' → '+p.status)}
+function pedidoTeste(){const n=db.pedidos.reduce((m,p)=>Math.max(m,+p.id.split('-')[1]||0),1040)+1;const d=new Date();d.setMinutes(d.getMinutes()+40);db.pedidos.unshift({id:'DF-'+n,tipo:'retirada',cliente:'Cliente teste',tel:'71 90000-0000',itens:[{id:'m1',q:1},{id:'b1',q:1}],retirada:String(d.getHours()).padStart(2,'0')+':'+String(Math.floor(d.getMinutes()/15)*15).padStart(2,'0'),entrega:'Retirar no balcão',status:'novo',criado:new Date().toISOString(),pago:'Pix'});salva('Pedido de teste criado')}
+function selo(){const t=$('#fTel').value.replace(/\D/g,'').replace(/^55/,'');if(t.length<10){toast('WhatsApp com DDD');return}let c=db.fidelidade.find(x=>x.tel===t);if(!c){c={tel:t,nome:$('#fNome').value.trim()||'Cliente',selos:0,resgates:0};db.fidelidade.push(c)}c.selos=Math.min(10,c.selos+1);salva(c.nome+': '+c.selos+'/10')}
+function resgatar(t){const c=db.fidelidade.find(x=>x.tel===t);c.selos=0;c.resgates++;salva('Almoço grátis liberado pra '+c.nome)}
+window.addEventListener('storage',()=>{if($('#app').style.display==='block')render()});
+try{if(sessionStorage.getItem('dfb-ok'))abrir()}catch(_){}
+</script>
+</body>
+</html>
