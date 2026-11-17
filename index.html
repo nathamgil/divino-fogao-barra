@@ -370,14 +370,14 @@ footer .z{opacity:.7}
   <div class="wrap">
     <div class="titulo"><span class="etq">@divinofogaoshoppingbarra</span><h2>Direto da nossa cozinha</h2></div>
     <div class="gal">
-      <img src="assets/buffet-2.jpg" alt="Buffet de pratos quentes" loading="lazy">
-      <img src="assets/grelhados.jpg" alt="Grelhados e ovos" loading="lazy">
-      <img src="assets/feijoada.jpg" alt="Feijoada de sábado" loading="lazy">
-      <img src="assets/saladas.jpg" alt="Saladas" loading="lazy">
-      <img src="assets/familia.jpg" alt="Família almoçando na praça" loading="lazy">
-      <img src="assets/parmegiana.jpg" alt="Filé à parmegiana com fritas" loading="lazy">
-      <img src="assets/buffet-4.jpg" alt="Saladas e molhos" loading="lazy">
-      <img src="assets/chopp.jpg" alt="Caneca de chopp gelado" loading="lazy">
+      <img src="assets/buffet-2.jpg" alt="Buffet de pratos quentes">
+      <img src="assets/grelhados.jpg" alt="Grelhados e ovos">
+      <img src="assets/feijoada.jpg" alt="Feijoada de sábado">
+      <img src="assets/saladas.jpg" alt="Saladas">
+      <img src="assets/familia.jpg" alt="Família almoçando na praça">
+      <img src="assets/parmegiana.jpg" alt="Filé à parmegiana com fritas">
+      <img src="assets/buffet-4.jpg" alt="Saladas e molhos">
+      <img src="assets/chopp.jpg" alt="Caneca de chopp gelado">
     </div>
   </div>
 </section>
@@ -423,7 +423,7 @@ footer .z{opacity:.7}
   </div>
 </div>
 
-<script src="assets/dados.js?v=20261117120902"></script>
+<script src="assets/dados.js?v=20261117121110"></script>
 <script>
 let db = DFB.carregar();
 const $ = s => document.querySelector(s);
@@ -457,7 +457,7 @@ function buffet(){
 function marmitas(){
   const ativos=db.marmitas.filter(m=>m.ativo);
   $('#marms').innerHTML=ativos.filter(m=>!m.bebida).map(m=>`
-    <article class="marm">${m.foto?`<img src="${m.foto}" alt="${m.nome}" loading="lazy">`:''}
+    <article class="marm">${m.foto?`<img src="${m.foto}" alt="${m.nome}">`:''}
       <div class="c"><h3>${m.nome}</h3><p>${m.desc}</p>
       <div class="r"><b>${DFB.brl(m.preco)}</b><button class="add" onclick="add('${m.id}')">Adicionar</button></div></div></article>`).join('');
   $('#bebs').innerHTML=ativos.filter(m=>m.bebida).map(m=>`<div class="beb">${m.nome} · ${DFB.brl(m.preco)}<button onclick="add('${m.id}')" aria-label="Adicionar ${m.nome}">+</button></div>`).join('');
